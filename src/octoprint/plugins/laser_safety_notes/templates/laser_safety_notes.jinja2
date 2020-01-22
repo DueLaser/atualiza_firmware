@@ -1,0 +1,56 @@
+<div id="laser_safety_overlay" class="modal hide fade" data-backdrop="static" data-keyboard="false">
+    <div class="modal-header">
+        <h3><i class="icon-warning-sign" style="color:red;"></i> {{ _('Avisos de Segurança') }}</h3>
+    </div>
+    <div class="modal-body">
+        {% trans %}<p>
+            <strong>Atenção, leia o comunicado abaixo. É muito importante para sua saúde e de todos ao seu redor!</strong>
+        </p>
+        <h3>
+           Classificação do Laser:
+        </h3>
+        <p>
+        	A sua Due contém um Laser de 445 nm de diodo com potência de saída superior a 1000 mW e é um Laser classe 4,
+        	capaz de causar danos aos olhos e pele e também apresentar risco de fogo quando potências altas forem usadas
+        	em velocidades baixas.  
+        </p>
+		<img src="/plugin_assets/laser_safety_notes/img/laser_class4_labels.png" alt="safety labels"/>
+		
+		<h3>Notas de segurança:</h3>
+        <p>
+			Produtos Laser emitem radiação intensa e podem causar daos aos olhos e queimaduras por irradiação.<br/>
+			NUNCA OLHE DIRETAMENTE PARA O LASER!<br/>
+			Todos na linha de visão devem usar óculos de proteção. <br/>
+			Mesmo com óculos de proteção, <strong> não</strong> olhe diretamente para o raio Laser.<br/>
+			Seja responsável com você mesmo e com os outros.<br/>
+			<strong>Nunca</strong> deixe a Due trabalhando sem supervisão. <br/>
+			<strong>Nunca</strong> coloque objetos espelhados ou inflamaveis sob o Laser. <br/>
+			Deve ser sempre operada por pessoas cientes dos riscos.<br/>
+			Se você não for operar, ensine outra pessoa com responsabilidade e cuidado.			
+        </p>
+		
+        <p>
+			Continuando você concorda que:
+		</p>
+		<ul>
+			<li>Você entende que Lasers são perigosos.</li>
+			<li>Você vai sempre utilizar a Due de maneira segura e responsável para propósitos legais.</li>
+			<li>Você é responsável pelo mau uso da sua Due.</li>
+			<li>Você é responsável por permitir acesso somente a pessoas com capacidade e conhecimento dos riscos</li>
+			<li>Você conectou a Due em uma rede segura e só pessoas autorizadas tem acesso a essa rede. </li>
+		</ul>
+
+        <p>
+			Se você tem alguma preocupação com segurança ou não concorda com os termos acima não use este software e a Due Laser. 
+        </p>
+			
+
+		<p>Obrigado pela sua atenção. </p>
+		{% endtrans %}
+        
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn btn-danger" data-bind="click: agree">{{ _('Eu entendo os riscos e concordo!') }}</a>
+    </div>
+</div>
+

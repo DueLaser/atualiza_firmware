@@ -1,0 +1,194 @@
+<div id="dialog_vector_graphics_conversion" class="modal hide fade">
+    <div class="modal-header">
+        <a href="#" class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
+        <h3>Gerar Código</h3>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal" data-bind="visible: !slicing_in_progress() ">
+			<div data-bind="visible: show_vector_parameters ">
+				<p>{{ _('Parâmetros - Vetor:') }}</p>
+
+				<div class="control-group">
+					<label class="control-label">{{ _('Potência') }} (1-100%)</label>
+					<div class="controls">
+						<div class="input-append">
+							<input id="svgtogcode_intensity_slider" type="text" data-bind="slicerValue: laserIntensity">
+							<input id="svgtogcode_intensity" class="slider_manual_input" type="number" min="1" max="100" data-bind="value: laserIntensity, valueUpdate: 'keyup'">%
+							</div>
+					</div>
+					<div class="controls alert alert-info hint" data-bind="visible: showHints">
+						<span class="icon icon-question-sign" aria-hidden="true"></span>
+						
+						Seta a intensidade do laser. Maiores potências resultam em maior penetração no material.
+						O efeito em geral depende do material, cor e acabamento superficial.
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">{{ _('Velocidade') }} (1 - 100%)</label>
+					<div class="controls">
+						<div class="input-append">
+							<input id="svgtogcode_feedrate_slider" class="uninitialized" type="text" data-bind="value: laserSpeed">
+							<input id="svgtogcode_feedrate" class="slider_manual_input" type="number" min="1" max="100" data-bind="value: laserSpeed, valueUpdate: 'keyup'">%
+						</div>
+					</div>
+					<div class="controls alert alert-info hint" data-bind="visible: showHints">
+						<span class="icon icon-question-sign" aria-hidden="true"></span>
+						Seta a velocidade do Laser.Maiores velocidades resultam em menor penetração no material.
+						O efeito em geral depende do material, cor e acabamento superficial.
+					</div>
+				</div>
+				<label class="control-label">{{ _('Preenchimento') }}</label>
+				<div class="controls">
+					<label class="checkbox">
+						<input type="checkbox" data-bind="checked: fill_areas">{{ _('Gravar preenchimento') }}
+					</label>
+				</div>
+            </div>
+
+			<div class="control-group" data-bind="visible: showExpertSettings ">
+				<label class="control-label">{{ _('Tempo de pausa (ms)') }} </label>
+				<div class="controls">
+					<div class="input-append">
+						<input type="number" min="0" max="1000" style="width:4em;" data-bind="value: pierceTime">
+					</div>
+				</div>
+				<div class="controls alert alert-info hint" data-bind="visible: showHints">
+					<span class="icon icon-question-sign" aria-hidden="true"></span>
+					Alguns materiais requerem uma pequena pausa antes do inicio do corte. Ese parâmetro seta essa pausa em ms.
+					</div>
+			</div>
+
+			<div data-bind="visible: show_image_parameters ">
+				<p>{{ _('Parametros de imagem:') }}</p>
+				<div class="control-group" >
+					<label class="control-label">{{ _('Potencia') }} (1 até 100%)</label>
+					<div class="controls">
+						<div class="input-append">
+							<input id="svgtogcode_img_intensity_white" class="img_intensity_input" type="number" min="1" max="100" data-bind="value: imgIntensityWhite">
+							<div class="svgtogcode_grayscale">&nbsp;</div>
+							<input id="svgtogcode_img_intensity_black" class="img_intensity_input" type="number" min="1" max="100" data-bind="value: imgIntensityBlack">
+						</div>
+					</div>
+					<div class="controls alert alert-info hint" data-bind="visible: showHints">
+						<span class="icon icon-question-sign" aria-hidden="true"></span>
+						Intervalo de potência usada na marcação. Valores maiores gravam pixels mais escuros enquanto valores menores gravam pixels mais claros.
+					</div>
+					<br>
+
+					<label class="control-label">{{ _('Velocidade') }} (1 até 100%)</label>
+					<div class="controls">
+						<div class="input-append">
+ 							<!-- <input id="svgtogcode_img_feedrate_white" class="img_intensity_input" type="number"  min="1" data-bind="value: imgFeedrateWhite">
+ 							<div class="svgtogcode_grayscale">&nbsp;</div> -->
+							<input id="svgtogcode_img_feedrate_black" class="img_intensity_input" type="number"  min="1" max="100" data-bind="value: imgFeedrateBlack">
+						</div>
+					</div>
+					<div class="controls alert alert-info hint" data-bind="visible: showHints">
+						<span class="icon icon-question-sign" aria-hidden="true"></span>
+						Intervalo de velocidade usada na marcação. Valores maiores gravam pixels mais claros enquanto valores menores gravam pixels mais escuros.
+					</div>
+					<br>
+					
+					<label class="control-label">{{ _('Resolução') }}(0.05 - 1 mm) </label>
+					<div class="controls">
+						<div class="input-append">
+							<input id="svgtogcode_img_line_dist" class="img_intensity_input" type="number" max="1" min="0.05" step="0.05" data-bind="value: beamDiameter">mm
+						</div>
+					</div>
+					<div class="controls alert alert-info hint" data-bind="visible: showHints">
+						<span class="icon icon-question-sign" aria-hidden="true"></span>
+						Marcações em raster são feitas linha por linha. Este parâmetro seta a distancia entre as linhas.
+						Valores menores possibilitam marcações mais precisas, mas demorarm mais tempo.
+					</div>
+
+				</div>
+				<div class="control-group" data-bind="visible: showExpertSettings">
+					<label class="control-label">{{ _('Resolução') }}</label>
+					<div class="controls">
+						<div class="input-append">
+							<input id="svgtogcode_img_line_dist" class="img_intensity_input" type="number" max="0.5" min="0.1" step="0.05" data-bind="value: beamDiameter">mm
+						</div>
+					</div>
+					<div class="controls alert alert-info hint" data-bind="visible: showHints">
+						<span class="icon icon-question-sign" aria-hidden="true"></span>
+						Marcações em raster são feitas linha por linha. Este parâmetro seta a distancia entre as linhas.
+						Valores menores possibilitam marcações mais precisas, mas demorarm mais tempo.
+					</div>
+
+
+					<p >{{ _('Processamento de imagem') }}</p>
+					<div class="controls">
+						<div class="img_preprocessing_preview before" style="background-image:url(/plugin/svgtogcode/static/img/kitty_grayscale.png);" >Antes</div>
+						<div class="img_preprocessing_preview after" style="background-image:url(/plugin/svgtogcode/static/img/kitty_grayscale.png);" >Depois
+							<div class="img_preprocessing_preview contrast" style="background-image:url(/plugin/svgtogcode/static/img/kitty_contrast.png);" data-bind="style: { opacity: contrastPreview }" ></div>
+							<div class="img_preprocessing_preview sharpened" style="background-image:url(/plugin/svgtogcode/static/img/kitty_sharpened.png);" data-bind="style: { opacity: sharpenedPreview }" ></div>
+							<div class="img_preprocessing_preview dithered" style="background-image:url(/plugin/svgtogcode/static/img/kitty_dithered_150.png);" data-bind="visible: imgDithering"></div>
+
+						</div>
+						<div class="photo_attribution"><a href="http://www.christianholmer.com" target="_blank">Foto: Christian Holmér</a></div>
+					</div>
+
+					<div data-bind="disable:imgDithering ">
+						<label class="control-label">{{ _('Contraste') }}</label>
+						<div class="controls img_slider">
+							<input id="svgtogcode_contrast_slider" type="text" data-bind="value: imgContrast" >
+						</div>
+						<div style="clear:both"></div>
+						<div class="controls alert alert-info hint" data-bind="visible: showHints">
+							<span class="icon icon-question-sign" aria-hidden="true"></span>
+							Aumenta o contraste da imagem.
+						</div>
+
+						<label class="control-label">{{ _('Nitidez') }}</label>
+						<div class="controls img_slider">
+							<input id="svgtogcode_sharpening_slider" class="uninitialized" type="text" data-bind="value: imgSharpening">
+						</div>
+						<div style="clear:both"></div>
+						<div class="controls alert alert-info hint" data-bind="visible: showHints">
+							<span class="icon icon-question-sign" aria-hidden="true"></span>
+							Aumenta a nitidez da imagem.
+						</div>
+					</div>
+
+					<label class="control-label">{{ _('Pontilhado') }}</label>
+					<div class="controls">
+						<label class="checkbox">
+							<input type="checkbox" data-bind="checked: imgDithering">{{ _('Pontilhado') }}
+						</label>
+					</div>
+					<div class="controls alert alert-info hint" data-bind="visible: showHints">
+						<span class="icon icon-question-sign" aria-hidden="true"></span>
+						Converte a imagem em pontos preto e branco. Use esse efeito em materials que nao aceitam escala de cor.
+					</div>
+
+				</div>
+			</div>
+
+            <div class="control-group" data-bind="visible: showExpertSettings ">
+				<p>{{ _('Salvar gcode:') }}</p>
+                <label class="control-label">{{ _('Nome do arquivo') }}</label>
+                <div class="controls">
+                    <div class="input-append">
+                        <input type="text" data-bind="value: gcodeFilename">
+                        <span class="add-on"><span data-bind="text:settingsString"></span>.gco</span>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+		<div id="slicing_progress" class="progress" style="width: 100%;" data-bind="visible: slicing_in_progress">
+			<div class="bar" style="width: 0%" data-bind="style: {width: slicing_progress() + '%'} "></div>
+		</div>
+    </div>
+    <div class="modal-footer">
+		<div class="pull-left" style="text-align:left;">
+			<!-- <label class="checkbox">
+			<input type="checkbox" data-bind="checked: showExpertSettings">Mostrar configuracoes avançadas</label> -->
+			<label class="checkbox">
+			<input type="checkbox" data-bind="checked: showHints">Mostrar ajuda</label>
+		</div>
+
+        <a href="#" class="btn" data-dismiss="modal" aria-hidden="true" data-bind="click: $root.cancel_conversion()">{{ _('Cancelar') }}</a>
+        <a href="#" class="btn btn-primary" data-bind="click: function() { if ($root.enableConvertButton()) { $root.convert() } }, enabled: enableConvertButton, css: {disabled: !$root.enableConvertButton()}">{{ _('Converter') }}</a>
+    </div>
+</div>

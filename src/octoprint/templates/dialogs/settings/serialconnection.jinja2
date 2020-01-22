@@ -1,0 +1,95 @@
+<form class="form-horizontal">
+    <div class="control-group" title="{{ _('Porta serial na qual se conectar') }}">
+        <label class="control-label" for="settings-serialPort">{{ _('Porta Serial') }}</label>
+        <div class="controls">
+            <select id="settings-serialPort"  data-bind="event: {change: saveall}, options: serial_portOptions, optionsCaption: 'AUTO', value: serial_port"></select>
+        </div>
+    </div>
+    <div class="control-group" title="{{ _('Taxa de comunica~ção') }}">
+        <label class="control-label" for="settings-baudrate">{{ _('Taxa') }}</label>
+        <div class="controls">
+            <select id="settings-baudrate"  data-bind="event: {change: saveall}, options: serial_baudrateOptions, optionsCaption: 'AUTO', value: serial_baudrate"></select>
+        </div>
+    </div>
+    <div class="control-group" title="{{ _('Conectar automaticamente ao iniciar') }}">
+        <div class="controls">
+            <label class="checkbox">
+                <input type="checkbox"  data-bind="event: {change: saveall}, checked: serial_autoconnect" id="settings-serialAutoconnect"> {{ _('Conectar automaticamente') }}
+            </label>
+        </div>
+    </div>
+<!--	
+    <div class="control-group" title="{{ _('Intervalo para medir posição') }}">
+        <label class="control-label" for="settings-serialTimeoutTemperature">{{ _('Intervalo') }}</label>
+        <div class="controls">
+            <div class="input-append">
+                <input type="number" step="any" min="0" class="input-mini text-right"  data-bind="event: {change: saveall}, value: serial_timeoutCommunication" id="settings-serialTimeoutCommunication">
+                <input type="number" step="any" min="0" class="input-mini text-right" data-bind="value: serial_timeoutTemperature" id="settings-serialTimeoutTemperature">
+                <span class="add-on">s</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="control-group" title="{{ _('Interval in which to poll for the SD printing status information from the printer while printing') }}">
+        <label class="control-label" for="settings-serialTimeoutSdStatus">{{ _('SD status interval') }}</label>
+        <div class="controls">
+            <div class="input-append">
+                <input type="number" step="any" min="0" class="input-mini text-right" data-bind="value: serial_timeoutSdStatus" id="settings-serialTimeoutSdStatus">
+                <span class="add-on">s</span>
+            </div>
+        </div>
+    </div>
+-->
+    <div class="control-group" title="{{ _('Tempo após o qual a Due será considerada desligada.') }}">
+        <label class="control-label" for="settings-serialTimeoutCommunication">{{ _('Timeout de comunicação') }}</label>
+        <div class="controls">
+            <div class="input-append">
+                <input type="number" step="any" min="0" class="input-mini text-right" data-bind="event: {change: saveall}, value: serial_timeoutCommunication" id="settings-serialTimeoutCommunication">
+                <span class="add-on">s</span>
+            </div>
+        </div>
+    </div>
+    <div class="control-group" title="{{ _('Tempo após o qual uma conexão é dada como falha') }}">
+
+        <label class="control-label" for="settings-serialTimeoutConnection">{{ _('Timeout de conexão') }}</label>
+        <div class="controls">
+            <div class="input-append">
+                <input type="number" step="any" min="0" class="input-mini text-right"  data-bind="event: {change: saveall}, value: serial_timeoutConnection" id="settings-serialTimeoutConnection">
+                <span class="add-on">s</span>
+            </div>
+        </div>
+    </div>
+    <div class="control-group" title="{{ _('Tempo após o qual a auto-detecção é considerada falha') }}">
+        <label class="control-label" for="settings-serialTimeoutDetection">{{ _('Timeout de autodetecção') }}</label>
+        <div class="controls">
+            <div class="input-append">
+                <input type="number" step="any" min="0" class="input-mini text-right"  data-bind="event: {change: saveall}, value: serial_timeoutDetection" id="settings-serialTimeoutDetection">
+                <span class="add-on">s</span>
+            </div>
+        </div>
+    </div>
+    <!--
+    <div class="control-group">
+        <div class="controls">
+            <label class="checkbox">
+                <input type="checkbox"  data-bind="event: {change: saveall}, checked: serial_log" id="settings-serialLog"> {{ _('Log communication to serial.log (might negatively impact performance)') }} <span class="label label-important">{{ _('Warning') }}</span>
+            </label>
+        </div>
+    </div>--!>
+<!--	
+    <div class="control-group">
+        <label class="control-label" for="settings-serialLongRunningCommands">{{ _('Long running commands') }}</label>
+        <div class="controls">
+            <input type="text" class="input-block-level" id="settings-serialLongRunningCommands" data-bind="value: serial_longRunningCommands">
+            <span class="help-inline">{{ _('Use this to specify the commands known to take a long time to complete without output from your printer and hence might cause timeout issues. Just the G or M code, comma separated.')|format(glob_url="http://docs.python.org/2/library/glob.html") }}</span>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="settings-serialAdditionalPorts">{{ _('Additional serial ports') }}</label>
+        <div class="controls">
+            <textarea rows="4" class="block" id="settings-serialAdditionalPorts" data-bind="value: serial_additionalPorts"></textarea>
+            <span class="help-inline">{{ _('Use this to define additional <a href="%%(glob_url)s">glob patterns</a> matching serial ports to list for connecting against, e.g. <code>/dev/ttyAMA*</code>. One entry per line.')|format(glob_url="http://docs.python.org/2/library/glob.html") }}</span>
+        </div>
+    </div>
+	-->
+</form>
